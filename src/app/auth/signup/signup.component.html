@@ -1,0 +1,64 @@
+
+
+<div class="mainBody">
+    <div class="container">
+        <div class="form-container">
+            <div class="header">
+                <h1>Create Account</h1>
+                <p>Sign up to get started with our service</p>
+            </div>
+            
+            <form class="signup-form" >
+                <div class="input-group">
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" name="username" placeholder="Username" [(ngModel)]="credentials.username" required>
+                    </div>
+                    
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" name="email"  placeholder="Email" [(ngModel)]="credentials.email" required>
+                    </div>
+                    
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password"  name="password"   placeholder="Password" [(ngModel)]="credentials.password" required>
+                        <i class="fas fa-eye-slash toggle-password"></i>
+                    </div>
+                </div>
+                
+                <div class="terms-container">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
+                </div>
+                
+                <button type="submit" class="signup-btn" (click)="signup(credentials)">Sign Up</button>
+                
+                <div class="divider">
+                    <span>or continue with</span>
+                </div>
+                
+                <div class="social-login">
+                    <button type="button" class="social-btn google"><i class="fab fa-google"></i></button>
+                    <button type="button" class="social-btn facebook"><i class="fab fa-facebook-f"></i></button>
+                    <button type="button" class="social-btn apple"><i class="fab fa-apple"></i></button>
+                </div>
+                
+                <div class="login-link">
+                    Already have an account? <a href="#">Log in</a>
+                </div>
+            </form>
+        </div>
+        
+        <div class="image-container">
+            <div class="overlay">
+                <div class="welcome-text">
+                    <h2>Welcome!</h2>
+                    <p>Join our community of over 10,000 users</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
