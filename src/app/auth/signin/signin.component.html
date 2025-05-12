@@ -1,0 +1,60 @@
+
+
+<div class="mainBody">
+    <div class="container">
+        <div class="form-container">
+            <div class="header">
+                <h1>Login to your Account</h1>
+                <p>Sign in to get started with our service</p>
+            </div>
+            
+            <form class="signup-form" [formGroup]="signIn" (ngSubmit)="signin()" >
+                <div class="input-group">
+                   
+                    
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" name="email"  placeholder="Email"formControlName="email">
+                        <div  *ngIf="signIn.get('email')?.errors?.['email'] && signIn.get('email')?.invalid">Please enter valid email here.</div>
+                                
+                        <div *ngIf="signIn.get('email')?.errors?.['required'] && signIn.get('email')?.invalid"> Email is required.</div>
+                        </div>
+                    
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password"  name="password"   placeholder="Password" formControlName="password" >
+                         <div *ngIf="signIn.get('password')?.invalid">Password is required.</div>
+
+                        <i class="fas fa-eye-slash toggle-password"></i>
+                    </div>
+                </div>
+                
+                <div class="terms-container">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
+                </div>
+                
+                <button type="submit" class="signup-btn" [disabled]="signIn.invalid" >Sign In</button>
+                
+               
+                
+               
+                
+                <div class="login-link">
+                    Don't have an account? <a (click)="redirectSignUp()" style="cursor: pointer;">Sign Up</a>
+                </div>
+            </form>
+        </div>
+        
+        <div class="image-container">
+            <div class="overlay">
+                <div class="welcome-text">
+                    <h2>Welcome!</h2>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

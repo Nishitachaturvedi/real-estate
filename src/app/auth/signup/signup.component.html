@@ -8,21 +8,37 @@
                 <p>Sign up to get started with our service</p>
             </div>
             
-            <form class="signup-form" >
+            <form class="signup-form"  [formGroup]="signUpForm" (ngSubmit)="signup()">
                 <div class="input-group">
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" id="username" name="username" placeholder="Username" [(ngModel)]="credentials.username" required>
+                        <input type="text" id="username" name="username" placeholder="Username" formControlName="username" >
+                        <div *ngIf="signUpForm.get('username')?.invalid && signUpForm.get('username')?.touched" style="color: grey; font-size: small;">
+                          username field is required.
+                        </div>
                     </div>
                     
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" id="email" name="email"  placeholder="Email" [(ngModel)]="credentials.email" required>
+                        <input type="email" id="email" name="email"  placeholder="Email" formControlName="email"  >
+                        <div *ngIf="signUpForm.get('email')?.errors?.['email'] && signUpForm.get('email')?.touched" style="color: grey; font-size: small;">
+                            please enter valid email id
+                        </div>
+
+                       <div *ngIf="signUpForm.get('email')?.errors?.['required'] && signUpForm.get('email')?.touched" style="color: grey; font-size: small;">
+                        email id is required.
+                       </div>
+                             
+
                     </div>
                     
                     <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" id="password"  name="password"   placeholder="Password" [(ngModel)]="credentials.password" required>
+                        <i class="fas-lock"></i>
+                        <input type="p faassword" id="password"  name="password"   placeholder="Password" formControlName="password"   >
+                         <div *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched" style="color: grey; font-size: small;">
+                            password is required.
+                         </div>
+
                         <i class="fas fa-eye-slash toggle-password"></i>
                     </div>
                 </div>
@@ -32,20 +48,14 @@
                     <label for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
                 </div>
                 
-                <button type="submit" class="signup-btn" (click)="signup(credentials)">Sign Up</button>
+                <button type="submit" class="signup-btn" [disabled]="signUpForm.invalid">Sign Up</button>
                 
-                <div class="divider">
-                    <span>or continue with</span>
-                </div>
+              
                 
-                <div class="social-login">
-                    <button type="button" class="social-btn google"><i class="fab fa-google"></i></button>
-                    <button type="button" class="social-btn facebook"><i class="fab fa-facebook-f"></i></button>
-                    <button type="button" class="social-btn apple"><i class="fab fa-apple"></i></button>
-                </div>
+               
                 
                 <div class="login-link">
-                    Already have an account? <a href="#">Log in</a>
+                    Already have an account? <a (click)="redirectSignin()" style="cursor: pointer;">Log in</a>
                 </div>
             </form>
         </div>
@@ -53,7 +63,7 @@
         <div class="image-container">
             <div class="overlay">
                 <div class="welcome-text">
-                    <h2>Welcome!</h2>
+                    <h2>Join us!</h2>
                     <p>Join our community of over 10,000 users</p>
                 </div>
             </div>

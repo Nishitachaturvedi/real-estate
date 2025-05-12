@@ -3,8 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyAPLHlvYxZshGvoKX6x9xmkzUxsEE8KP4Y",
+    authDomain: "mern-auth-c604a.firebaseapp.com",
+    projectId: "mern-auth-c604a",
+    storageBucket: "mern-auth-c604a.appspot.com",
+    messagingSenderId: "190229859880",
+    appId: "1:190229859880:web:12d24a787da4a52f3eaf1d"
+  }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -1,0 +1,144 @@
+
+<form class="listing-body" [formGroup]="createlisting" (ngSubmit)="submit()">
+<div class="container">
+        <h1>Create a Listing</h1>
+        
+        <div class="form-group">
+            <input type="text" placeholder="new apartment listing"  formControlName="name">
+            <div *ngIf="createlisting.get('name')?.errors?.['required'] && createlisting.get('name')?.touched" style="color: gray; font-size: small;">please provide apartment type.</div>
+        </div>
+        
+        <div class="form-group">
+            <textarea placeholder="Description" formControlName="description">
+
+            </textarea>
+            <div *ngIf="createlisting.get('description')?.errors?.['maxlength'] && (createlisting.get('description')?.touched || createlisting.get('description')?.dirty)" style="color: gray; font-size: small;">
+                max value exceeded.
+            </div>
+            <div *ngIf="createlisting.get('description')?.errors?.['minlength'] && (createlisting.get('description')?.touched  || createlisting.get('description')?.dirty)" style="color: gray; font-size: small;">
+                         min 10 word description is required.
+            </div>
+            <div *ngIf="createlisting.get('description')?.errors?.['required'] && createlisting.get('description')?.touched" style="color: gray; font-size: small;">
+                    Description is required.
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <input type="text" placeholder="Address" formControlName="address">
+            <div *ngIf="createlisting.get('address')?.errors?.['required'] && createlisting.get('address')?.touched"style="color: gray; font-size: small;"> please provide address</div>
+        </div>
+        
+        <div class="checkbox-group" >
+            <div class="checkbox-item">
+                <input type="radio" id="sell" name="type" formControlName="type" value="sell" >
+                <label for="sell">Sell</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="radio" id="rent" formControlName="type" name="type" value="rent" >
+                <label for="rent">Rent</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="radio" id="lease"formControlName="type" name="type" value="lease">
+                <label for="lease">Lease</label>
+            </div>
+           
+        </div>
+        
+        <div class="checkbox-group">
+            <div class="checkbox-item">
+                <input type="checkbox" id="furnished" formControlName="furnished" >
+                <label for="furnished">Furnished</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="parking" formControlName="parking" >
+                <label for="parking">Parking spot</label>
+            </div>
+            
+        </div>
+        
+        <div class="input-row">
+            <div class="input-group">
+                <label>Beds</label>
+                <input type="number" placeholder="Enter Bedrooms" formControlName="bedrooms">
+            </div>
+            <div class="input-group">
+                <label>Baths</label>
+                <input type="number" placeholder="Enter Bathrooms" formControlName="bathrooms" >
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <label>Regular price</label>
+            <input type="number" placeholder="price" formControlName="regularPrice">
+
+            <div *ngIf="createlisting.get('regularPrice')?.errors?.['min'] "style="color: gray; font-size: small;">Regular should be greater than 0.</div>
+            <div *ngIf="createlisting.get('regularPrice')?.errors?.['required'] && createlisting.get('regularPrice')?.touched" style="color: gray; font-size: small;"> Regular Price field is required</div>
+            <div style="font-size: 12px; color: #666; margin-top: 5px;">
+                <span *ngIf="createlisting.get('type')?.value == 'sell' "> (₹)</span>
+                <span *ngIf="createlisting.get('type')?.value == 'rent'"> (₹ per month) </span>
+                <span *ngIf="createlisting.get('type')?.value == 'lease'"> (₹ per month) </span>
+                
+            </div>
+
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="offer" formControlName="offer" >
+                    <label for="offer">Offer</label>
+
+                </div>
+
+               
+
+            </div>
+            
+        </div>
+ 
+        <div>
+
+        <div class="input-group" style="margin-bottom: 2rem ;"  *ngIf="createlisting.get('offer')?.value">
+            <label>Discount </label>
+            <input type="number" placeholder="discount" formControlName="discountPrice">
+            <div *ngIf="createlisting?.errors?.['priceError'] "style="color: gray; font-size: small;"> Discount should be less than regular price.</div>
+            <div *ngIf="createlisting.get('discountPrice')?.errors?.['min'] "style="color: gray; font-size: small;">The discount should be greater than 0.</div>
+            <div *ngIf="createlisting.get('discountPrice')?.errors?.['required'] && createlisting.get('discountPrice')?.touched" style="color: gray; font-size: small;"> Discount field is required</div>
+
+           
+        </div>
+
+        <div class="input-group" style="margin-bottom: 2rem ;">
+            <label>Final Prize </label>
+            <input type="number" placeholder="Price" formControlName="finalPrice" readonly>
+
+            <div *ngIf="createlisting.get('finalPrice')?.errors?.['min'] "style="color: gray; font-size: small;">The Total Price should be greater than 0.</div>
+           
+
+           
+        </div>
+
+       
+
+    </div>
+
+
+
+        <div class="upload-section">
+            <div class="upload-header">
+                <div class="upload-note">Images: The first image will be the cover (max 6)</div>
+            </div>
+            <div class="file-input-wrapper">
+                <div class="file-input">No file chosen</div>
+                
+                <!-- src/app/app.component.html -->
+<input type="file" (change)="onFileSelected($event)" type="file"
+accept="image/*" />
+
+  
+ 
+
+
+            </div>
+        </div>
+        
+        <button class="submit-btn">CREATE LISTING</button>
+    </div>
+</form>

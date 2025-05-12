@@ -1,0 +1,175 @@
+
+<div class="themeBody">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">NishitaRealEstate</div>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search for homes...">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#mylist">MyList</a></li>
+            <li><a href="#rent">Rent</a></li>
+            <li><a href="#sale">Sale</a></li>
+            <li><a href="#offers">Offers</a></li>
+            <li><a href="#singout">Sign Out</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="background-image: url('https://static.vecteezy.com/system/resources/previews/007/375/352/non_2x/abstract-purple-modern-elegant-design-background-vector.jpg');">
+        <h1>Find your home......</h1>
+        <div class="hero-buttons" >
+            <button class="btn btn-primary" [routerLink]="['/create-listing']">Create listing</button>
+            <button class="btn btn-outline">All listings</button>
+        </div>
+    </section>
+
+    <!-- Offers Section -->
+    <section id="offers" class="section">
+        <h2 class="section-title">Offers</h2>
+        <div class="card-container">
+            <div class="card" *ngFor="let item of rentListingArray">
+                <div class="card-img" [style.background-image] ="'url(' + item.imageUrls[0] + ')'"></div>
+                <div class="card-content">
+                    <div class="card-title">First Month Free</div>
+                    <div class="card-price">{{item.regularPrice | moneyPipe}}</div>
+                    <div class="card-location"><i class="pi pi-map-marker" style="margin-right: 0.1rem ;"></i>{{item.address}}</div>
+                    <div class="card-features">
+                        <span> Bedrooms :  {{item.bedrooms}}</span><span> Bathrooms : {{item.bathrooms}}</span>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+           
+        </div>
+        <div class="show-more">
+            <button class="btn btn-outline">Show More</button>
+        </div>
+    </section>
+
+    <!-- Sale Section -->
+    <section id="sale" class="section">
+        <h2 class="section-title">Sale</h2>
+        <div class="card-container">
+           <div class="card" *ngFor="let item of rentListingArray">
+                <div class="card-img" [style.background-image]="'url(' + item.imageUrls[0] + ')'"></div>
+                <div class="card-content">
+                    <div class="card-title">Ranch Style Home</div>
+                    <div class="card-price">{{item.regularPrice | moneyPipe}}</div>
+                    <div class="card-location" ><i class="pi pi-map-marker" style="margin-right: 0.1rem ;"></i>{{item.address}}</div>
+                    <div class="card-features">
+                        <span> Bedrooms :  {{item.bedrooms}}</span><span> Bathrooms : {{item.bathrooms}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="show-more">
+            <button class="btn btn-outline">Show More</button>
+        </div>
+    </section>
+
+    <!-- Rent Section -->
+    <section id="rent" class="section">
+        <h2 class="section-title">Rent</h2>
+        <div class="card-container">
+
+            
+            <!-- Rent Card 2 -->
+            <div class="card" *ngFor="let item of rentListingArray">
+                <div class="card-img" [style.background-image]="'url(' + item.imageUrls[0] + ')'"></div>
+                <div class="card-content">
+                    <div class="card-title">Studio Apartment</div>
+                    <div class="card-price">{{item.regularPrice | moneyPipe}}</div>
+                    <div class="card-location"><i class="pi pi-map-marker" style="margin-right: 0.1rem ;"></i>{{item.address}}</div>
+                    <div class="card-features">  <span> Bedrooms :  {{item.bedrooms}}</span><span> Bathrooms : {{item.bathrooms}}</span></div>
+                    
+                </div>
+            </div>
+            
+           
+            
+           
+        </div>
+        <div class="show-more">
+            <button class="btn btn-outline" >Show More</button>
+        </div>
+    </section>
+
+    <!-- MyList Section -->
+    <section id="mylist" class="section">
+        <h2 class="section-title">MyList</h2>
+        <div class="card-container">
+            <!-- MyList Card 1 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('/api/placeholder/400/200')"></div>
+                <div class="card-content">
+                    <div class="card-title">Beach House</div>
+                    <div class="card-price">$3,500/mo</div>
+                    <div class="card-location">Ocean Drive, Miami</div>
+                    <div class="card-features">
+                        <span>3 Beds</span>
+                        <span>2 Baths</span>
+                        <span>1,600 sq ft</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- MyList Card 2 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('/api/placeholder/400/200')"></div>
+                <div class="card-content">
+                    <div class="card-title">Modern Condo</div>
+                    <div class="card-price">$425,000</div>
+                    <div class="card-location">Marina District, San Diego</div>
+                    <div class="card-features">
+                        <span>2 Beds</span>
+                        <span>2 Baths</span>
+                        <span>1,200 sq ft</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- MyList Card 3 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('/api/placeholder/400/200')"></div>
+                <div class="card-content">
+                    <div class="card-title">Mountain Cabin</div>
+                    <div class="card-price">$1,900/mo</div>
+                    <div class="card-location">Rocky Hills, Denver</div>
+                    <div class="card-features">
+                        <span>2 Beds</span>
+                        <span>1 Bath</span>
+                        <span>950 sq ft</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- MyList Card 4 -->
+            <div class="card featured">
+                <div class="card-img" style="background-image: url('/api/placeholder/400/200')"></div>
+                <div class="card-content">
+                    <div class="card-title">Victorian Home</div>
+                    <div class="card-price">$595,000</div>
+                    <div class="card-location">Heritage District, San Francisco</div>
+                    <div class="card-features">
+                        <span>4 Beds</span>
+                        <span>3 Baths</span>
+                        <span>2,400 sq ft</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="show-more">
+            <button class="btn btn-outline">Show More</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 NishitaRealEstate. All rights reserved.</p>
+    </footer>
+
+   
+</div>

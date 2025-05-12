@@ -10,6 +10,8 @@ export class AuthService {
 
   constructor(private http : HttpClient) { }
 
+  
+
 
   signup ( data : cred  ): Observable<any> {
 
@@ -21,6 +23,16 @@ export class AuthService {
   
 
 
+
+  }
+
+  signIn(data : cred ) : Observable <any> {
+
+    return this.http.post<any>('http://localhost:3000/api/auth/signin',{
+      "email" : data.email,
+      "password" : data.password
+    })
+ 
 
   }
 
