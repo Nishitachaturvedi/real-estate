@@ -120,24 +120,27 @@
     </div>
 
 
-
-        <div class="upload-section">
-            <div class="upload-header">
-                <div class="upload-note">Images: The first image will be the cover (max 6)</div>
-            </div>
-            <div class="file-input-wrapper">
-                <div class="file-input">No file chosen</div>
-                
-                <!-- src/app/app.component.html -->
-<input type="file" (change)="onFileSelected($event)" type="file"
-accept="image/*" />
-
-  
- 
-
-
-            </div>
+    <div class="upload-section">
+        <div class="upload-header">
+            <div class="upload-note">Images: The first image will be the cover (max 6)</div>
         </div>
+        <div class="image-upload-container" >
+            <div class="plus-btn">
+                <input type="file" accept="image/*" multiple (change)="onFileSelected($event)" >
+            </div>
+            
+            <!-- Example preview images (you would generate these dynamically) -->
+            <div class="image-preview" *ngFor="let item of arr; let i = index" > 
+                <img [src]="item" alt="Preview">
+                <div class="remove-image" (click)="removeImg(i)">×</div>
+            </div>
+
+          
+           
+        
+           
+        </div>
+    </div>
         
         <button class="submit-btn">CREATE LISTING</button>
     </div>

@@ -3,6 +3,7 @@ import { FormBuilder,FormGroup, FormControl, Validators, ValidatorFn, AbstractCo
 import { group } from 'console';
 import { Observable } from 'rxjs';
 import { StorageService } from 'src/app/service/storage.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-create-listing',
@@ -12,8 +13,9 @@ import { StorageService } from 'src/app/service/storage.service';
 export class CreateListingComponent implements OnInit {
   downloadURL: any;
   public createlisting : FormGroup ;
+  public arr : string [] =[];// empty array
 
-  constructor(private fb : FormBuilder, private storageService : StorageService) {
+  constructor(private fb : FormBuilder, private storageService : StorageService ,  private cd: ChangeDetectorRef ) {
 
 this.createlisting = this.fb.group({
   name : ['',Validators.required],
@@ -100,14 +102,15 @@ return null;
     
   }
 
-  onFileSelected(event: Event) {
+  onFileSelected(event: Event) { 
     const input = event.target as HTMLInputElement;
-    if (!input.files || input.files.length === 0) {
+    if (!input.files || input.files.length === 0) { 
       return;
     }
-    const file = input.files[0];
+    console.log(input.files);
+    const file = input.files[0]; 
     if (!file.type.startsWith('image/')) {
-      alert('Please select an image file.');
+      alert('Please select an image file.'); 
       input.value = '';
       return;
     }
@@ -116,12 +119,34 @@ return null;
 
    this.downloadURL.subscribe((url : string)=>{
 
-
-    console.log(url);
-   })
- 
+   
+  this.arr = [...this.arr, url];
+  this.cd.detectChanges();
     
+
+console.log(this.arr);
+   })
+
+
+
+ 
+
+
+    
+  } 
+  removeImg(item : number ){
+
+
+console.log(this.arr);
+
+this.arr.splice(item,1);
+this.cd.detectChanges();
+console.log(this.arr);
   }
+
+
+
+ 
 
 
 
