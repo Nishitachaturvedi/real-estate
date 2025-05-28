@@ -130,7 +130,7 @@
             </div>
             
             <!-- Example preview images (you would generate these dynamically) -->
-            <div class="image-preview" *ngFor="let item of arr; let i = index" > 
+            <div class="image-preview" *ngFor="let item of createlisting.get('imageUrls')?.value; let i = index" > 
                 <img [src]="item" alt="Preview">
                 <div class="remove-image" (click)="removeImg(i)">×</div>
             </div>
@@ -142,6 +142,7 @@
         </div>
     </div>
         
-        <button class="submit-btn">CREATE LISTING</button>
+        <button class="submit-btn" >CREATE LISTING</button>
+        
     </div>
 </form>

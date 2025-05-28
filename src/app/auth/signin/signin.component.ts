@@ -31,7 +31,11 @@ export class SigninComponent implements OnInit {
 
     this.authService.signIn(this.signIn.value).subscribe((res)=>{
         let x = res.message;
+        let user = res.user;
+      let user_string =  JSON.stringify(user); 
+        localStorage.setItem("user_detail",user_string); 
         window.alert(x);
+        
       
     })
 

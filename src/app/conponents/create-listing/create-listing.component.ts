@@ -4,6 +4,7 @@ import { group } from 'console';
 import { Observable } from 'rxjs';
 import { StorageService } from 'src/app/service/storage.service';
 import { ChangeDetectorRef } from '@angular/core';
+import { ListingService } from 'src/app/service/listing.service';
 
 @Component({
   selector: 'app-create-listing',
@@ -11,11 +12,12 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrls: ['./create-listing.component.css']
 })
 export class CreateListingComponent implements OnInit {
-  downloadURL: any;
+  
   public createlisting : FormGroup ;
-  public arr : string [] =[];// empty array
+ 
+  
 
-  constructor(private fb : FormBuilder, private storageService : StorageService ,  private cd: ChangeDetectorRef ) {
+  constructor(private fb : FormBuilder, private storageService : StorageService ,  private cd: ChangeDetectorRef, private listingService : ListingService ) {
 
 this.createlisting = this.fb.group({
   name : ['',Validators.required],
@@ -28,15 +30,17 @@ this.createlisting = this.fb.group({
   discountPrice:['', [Validators.required,Validators.min(1)]],
   finalPrice : ['',[Validators.required,Validators.min(1)]],
   offer : [false, Validators.required],
-  parking : [false, Validators.required],
+  parking : [false, Validators.required],// idhar likhte h control ya no nice question kyoki humne alga se function bana rkaha h uska isliye ya 
   furnished : [false, Validators.required],
+  imageUrls : [[], Validators.required],// adding the formcontrol haan to isko arr denge na apan ok
+  userRef : [listingService.getUserID(), Validators.required]
 
 },{
   validator: this.discountLessThanRegularValidator
 })
 
 this.createlisting.get('regularPrice')?.valueChanges.subscribe((value)=>{
-  this.calculateFinalPrice();
+  this.calculateFinalPrice(); // idhar validation lagana padega img ka? ruk sochne de suar
 
 })
 
@@ -102,30 +106,55 @@ return null;
     
   }
 
-  onFileSelected(event: Event) { 
+  onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
-    if (!input.files || input.files.length === 0) { 
+    console.log(input.files?.length , "length");
+    if (!input.files || input.files.length === 0 ) { 
       return;
     }
-    console.log(input.files);
-    const file = input.files[0]; 
-    if (!file.type.startsWith('image/')) {
+    
+    const file   = input.files; 
+
+    console.log(file); 
+
+if(input.files.length > 6 ){ 
+
+  alert('You can select max 6 images ');
+  return;
+}
+else  
+  {
+
+    let imagesToBeUploaded = this.createlisting.get('imageUrls')?.value.length + input.files.length; 
+   
+    console.log(this.createlisting.get('imageUrls')?.value.length , "else block lenght");
+    if(imagesToBeUploaded > 6){
+  alert('You can select max 6 images ');
+  return;
+    }
+Array.from(input.files).forEach(element => {
+ 
+  if (!element.type.startsWith('image/')   ) {
       alert('Please select an image file.'); 
       input.value = '';
       return;
     }
-  
-    this.downloadURL= this.storageService.uploadImage(file, 'images');
-
-   this.downloadURL.subscribe((url : string)=>{
+  let downloadURL = this.storageService.uploadImage(element, 'images'); 
+ downloadURL.subscribe((url : string)=>{
 
    
-  this.arr = [...this.arr, url];
+  this.createlisting.get('imageUrls')?.setValue([...this.createlisting.get('imageUrls')?.value, url]) ;  
   this.cd.detectChanges();
+ 
+
+
+   })
+
+
+  });
     
 
-console.log(this.arr);
-   })
+
 
 
 
@@ -134,14 +163,20 @@ console.log(this.arr);
 
     
   } 
-  removeImg(item : number ){
 
 
-console.log(this.arr);
 
-this.arr.splice(item,1);
+}
+  removeImg(item : number ){ 
+
+
+
+let arr  = this.createlisting.get('imageUrls')?.value;
+arr.splice(item,1); 
+this.createlisting.get('imageUrls')?.setValue(arr);
+
 this.cd.detectChanges();
-console.log(this.arr);
+//console.log(this.arr);
   }
 
 
@@ -154,10 +189,31 @@ console.log(this.arr);
 
 
   ngOnInit(): void {
+
   }
 
   submit(){
-    console.log(this.createlisting);
+
+
+    if(this.createlisting.invalid){
+      window.alert("Invalid form ");
+      return;
+    }
+
+  let formValue = this.createlisting.value;
+
+    formValue.discountPrice = formValue.finalPrice;
+
+   console.log(formValue);
+    // console.log(this.createlisting.get('userRef')?.value);
+
+    this.listingService.createListing(formValue).subscribe((data)=>{  // always subscribe the http functions
+                 
+      console.log(data);
+
+
+    })
+
   }
 
 }

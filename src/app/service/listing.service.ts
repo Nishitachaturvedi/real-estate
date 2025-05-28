@@ -6,13 +6,14 @@ import { Observable, observable } from 'rxjs';
 })
 export class ListingService {
 
-  constructor(private http : HttpClient) {
+  constructor(private http : HttpClient) {// mujhe ek cheez nai sajha  ki mai yaha url banaungi vo jayega backend mei right but whatabout beech ka data jo maine bana rkaha h
+    // jaise form submit hone pr everything that is getting saved ya to mai usme data mtlb submit.value dungi? to form ka data save hoke backedn mei jayega
 }
-
+// ye homepage ki listing ki service h isme hi banadu createlisting ka?
 
 rentListing() : Observable <any> {
 
-return this.http.get <any>('http://localhost:3000/api/listing/get?type=rent&limit=4');
+return this.http.get <any>('http://localhost:3000/api/listing/get?type=rent&limit=10');
 
 }
 
@@ -28,6 +29,30 @@ offerListing() : Observable <any> {
 
   return this.http.get <any> ('http://localhost:3000/api/listing/get?offer=true&limit=4')
 } 
+
+
+createListing(body : any) : Observable <any> {
+  console.log("this is the post API running");
+
+return this.http.post <any> ('http://localhost:3000/api/listing/create', body,{ withCredentials: true });
+
+
+}
+
+
+getUserID () : any{
+
+let userRef_detail : string | null = localStorage.getItem("user_detail");
+        
+
+    if(userRef_detail != null){
+let  userRef = JSON.parse(userRef_detail);
+
+ return userRef._id;
+
+    }
+
+}
 
    }
 

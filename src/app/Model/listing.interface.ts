@@ -1,5 +1,5 @@
 export interface listing {
- 
+ name : string,
 imageUrls : string [],
 address : string,
 regularPrice : number,

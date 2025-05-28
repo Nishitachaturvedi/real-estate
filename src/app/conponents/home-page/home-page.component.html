@@ -31,8 +31,8 @@
             <div class="card" *ngFor="let item of rentListingArray">
                 <div class="card-img" [style.background-image] ="'url(' + item.imageUrls[0] + ')'"></div>
                 <div class="card-content">
-                    <div class="card-title">First Month Free</div>
-                    <div class="card-price">{{item.regularPrice | moneyPipe}}</div>
+                    <div class="card-title">{{item.name}}</div>
+                    <div class="card-price">{{item.discountPrice | moneyPipe}}</div>
                     <div class="card-location"><i class="pi pi-map-marker" style="margin-right: 0.1rem ;"></i>{{item.address}}</div>
                     <div class="card-features">
                         <span> Bedrooms :  {{item.bedrooms}}</span><span> Bathrooms : {{item.bathrooms}}</span>
@@ -56,7 +56,7 @@
            <div class="card" *ngFor="let item of rentListingArray">
                 <div class="card-img" [style.background-image]="'url(' + item.imageUrls[0] + ')'"></div>
                 <div class="card-content">
-                    <div class="card-title">Ranch Style Home</div>
+                    <div class="card-title">{{item.name}}</div>
                     <div class="card-price">{{item.regularPrice | moneyPipe}}</div>
                     <div class="card-location" ><i class="pi pi-map-marker" style="margin-right: 0.1rem ;"></i>{{item.address}}</div>
                     <div class="card-features">
@@ -80,8 +80,8 @@
             <div class="card" *ngFor="let item of rentListingArray">
                 <div class="card-img" [style.background-image]="'url(' + item.imageUrls[0] + ')'"></div>
                 <div class="card-content">
-                    <div class="card-title">Studio Apartment</div>
-                    <div class="card-price">{{item.regularPrice | moneyPipe}}</div>
+                    <div class="card-title">{{item.name}}</div>
+                    <div class="card-price">{{item.discountPrice | moneyPipe}}</div>
                     <div class="card-location"><i class="pi pi-map-marker" style="margin-right: 0.1rem ;"></i>{{item.address}}</div>
                     <div class="card-features">  <span> Bedrooms :  {{item.bedrooms}}</span><span> Bathrooms : {{item.bathrooms}}</span></div>
                     

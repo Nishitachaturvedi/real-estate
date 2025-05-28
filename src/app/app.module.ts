@@ -14,6 +14,8 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { HomePageComponent } from './conponents/home-page/home-page.component';
 import { MoneyPipePipe } from './pipes/money-pipe.pipe';
 import { CreateListingComponent } from './conponents/create-listing/create-listing.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 
 
 @NgModule({
@@ -27,12 +29,14 @@ import { CreateListingComponent } from './conponents/create-listing/create-listi
   ],
   imports: [
     BrowserModule,
+    MatSnackBarModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideStorage(()    => getStorage())
+    provideStorage(()    => getStorage()),
+    BrowserAnimationsModule
   
   ],
   providers: [],

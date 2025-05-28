@@ -31,7 +31,7 @@ export class AuthService {
     return this.http.post<any>('http://localhost:3000/api/auth/signin',{
       "email" : data.email,
       "password" : data.password
-    })
+    }, {withCredentials: true});
  
 
   }
