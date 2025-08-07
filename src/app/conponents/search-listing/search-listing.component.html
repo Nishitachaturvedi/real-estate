@@ -1,0 +1,70 @@
+<body>
+    <div class="themeBody">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>Shakes</h1>
+            <p>Tempt your taste buds with cold and thick milkshakes.</p>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filters-section">
+            <div class="filters-container">
+                <div class="tab-buttons">
+                    <!-- <button class="tab-btn active" onclick="setActiveTab(this)">All</button>   -->
+                    <button class="tab-btn" [ngClass]="offerState == true ? 'active' : '' " (click)="setActiveTabOffer('1')">Offer</button>
+                    <button class="tab-btn" [ngClass]="furnishedState == true ? 'active' : ''" (click)="setActiveTabOffer('2')">Furnished</button>
+                    <button class="tab-btn" [ngClass]="parkingState == true ? 'active' : '' "  (click)="setActiveTabOffer('3')">Parking</button>
+                   
+                </div>
+                
+                <div class="dropdown-container">
+                    <select #typeSelect class="dropdown" (change)="setActiveTabOffer(typeSelect.value)">
+                        <option value="all">All Types</option>
+                        <option value="4">Sale</option>
+                        <option value="5">Rent</option>
+                        <option value="6">Lease</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h2 class="section-title">Restaurants to explore</h2>
+            
+            <div class="card-grid" id="restaurantGrid">
+                <!-- Restaurant Card 1 -->
+                <div class="restaurant-card" data-category="pizza" data-type="sell" *ngFor="let item of searchArr">
+                    <div class="card-image" [style.background-image]=" 'url(' + item.imageUrls[0] + ') '">
+                        <div class="card-badge">{{item.discountPrice}}</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="restaurant-name">{{item.name}}</div>
+                        <div class="rating-info">
+                            <span class="rating">4.3</span>
+                            <span class="delivery-time">40-45 mins</span>
+                        </div>
+                        <div class="cuisine-location"><i class="pi pi-map-marker" style="margin-right: 0.1rem ;"></i>{{item.address}}</div>
+                    </div>
+                </div>
+
+               
+
+                
+
+                
+
+                
+
+               
+                
+
+              
+
+               
+            </div>
+        </div>
+    </div>
+
+    
+</body>

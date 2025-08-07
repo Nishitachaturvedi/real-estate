@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { StorageService } from 'src/app/service/storage.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { ListingService } from 'src/app/service/listing.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-listing',
@@ -17,7 +19,7 @@ export class CreateListingComponent implements OnInit {
  
   
 
-  constructor(private fb : FormBuilder, private storageService : StorageService ,  private cd: ChangeDetectorRef, private listingService : ListingService ) {
+  constructor(private fb : FormBuilder, private storageService : StorageService ,  private cd: ChangeDetectorRef, private listingService : ListingService, private _snackbar : MatSnackBar , private router : Router) {
 
 this.createlisting = this.fb.group({
   name : ['',Validators.required],
@@ -191,12 +193,14 @@ this.cd.detectChanges();
   ngOnInit(): void {
 
   }
+  
 
   submit(){
 
 
     if(this.createlisting.invalid){
-      window.alert("Invalid form ");
+      this.createlisting.markAllAsTouched();
+     this.openSnackBar("Form Invalid");
       return;
     }
 
@@ -210,9 +214,32 @@ this.cd.detectChanges();
     this.listingService.createListing(formValue).subscribe((data)=>{  // always subscribe the http functions
                  
       console.log(data);
+      
 
 
     })
+    this.openSnackBar("Form Submitted");
+    this.redirecttoHome();
+    
+    
+
+   
+
+
+
+  }
+   openSnackBar(value : string )
+    {
+          //  let snackBarRef = this._snackbar.open(`${value}`);// haan aagaya isliye delet kiya haan tumne sikhaya aise
+
+            this._snackbar.open(`${value}` , 'ok', {
+  duration: 3000
+});
+
+
+    }
+     redirecttoHome(){
+     this.router.navigate(['/home']);
 
   }
 

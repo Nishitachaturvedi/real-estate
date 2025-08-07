@@ -1,0 +1,99 @@
+
+<div class="themeBody">
+    <div class="listing-container">
+        <div class="main-card">
+            <!-- Top Section: Images and Basic Info -->
+            <div class="card-top" >
+                <!-- Image Gallery Section (70% width) -->
+                <div class="image-gallery">
+               
+                    <div class="main-image"  >
+                             
+                        <img [src]="mainImage" alt="Main property image" id="mainImg">
+                        <i (click)="showLeftImg(mainImage)" class="pi pi-chevron-left"></i>
+                        <i (click)="showRightImg(mainImage)" class="pi pi-chevron-right"></i>
+                    </div>
+                    <div class="thumbnail-container" >
+                        <div class="thumbnail " *ngFor="let item of listingDetails.imageUrls" [ngClass]="{active : mainImage == item}" >
+                            <img  [src]="item" alt="Thumbnail 1" (click)="mainImageFunction(item)">
+                        </div>
+                       
+                      
+                        
+                        
+                        
+                        
+                    </div>
+                </div>
+
+                <!-- Property Info Section (30% width) -->
+                <div class="property-info">
+                    <h1 class="listing-name">{{listingDetails.name}}</h1>
+                    <div class="address">
+                        <span class="location-icon">📍</span>
+                        <span>{{listingDetails.address}}</span>
+                    </div>
+                    <div class="property-type">
+                        <span class="type-label">Type:</span>
+                        <span class="type-value">{{listingDetails.type}}</span>
+                    </div>
+                    <div class="price">
+        
+                        <div>
+                        
+                        <div style="margin-top: 3px;"><span class="price-amount" *ngIf="listingDetails.offer== true" >₹{{listingDetails.discountPrice}} <span class="price-period" *ngIf="listingDetails.type =='rent' || listingDetails.type == 'offer'">per month</span></span>
+                        
+                        </div>
+                        <div style="margin-top: 9px;">
+                        <span class="price-amount" *ngIf="listingDetails.offer== true" ><del style="font-size: medium; color: gray; ">₹{{listingDetails.regularPrice}}</del> <span style="font-size: medium; color: grey; margin-left: 9px; margin-bottom: 15px;">{{calculatePercentOff()}}% off</span> </span>
+                        </div>
+                        </div>
+                      
+
+                    </div>
+                    <div class="property-features">
+                        <div class="feature">
+                            <span class="feature-icon">🛏️</span>
+                            <span class="feature-label">Bedrooms</span>
+                            <span class="feature-value">{{listingDetails.bedrooms}}</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🚿</span>
+                            <span class="feature-label">Bathrooms</span>
+                            <span class="feature-value">{{listingDetails.bathrooms}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Section: Additional Details -->
+            <div class="card-bottom">
+                <div class="additional-details">
+                    <div class="detail-section">
+                        <h3 class="detail-title">Description</h3>
+                        <p class="description">
+                            {{listingDetails.description}}
+                        </p>
+                    </div>
+
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Parking:</span>
+                            <span class="detail-value">{{listingDetails.parking? "Yes": "No"}}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Posted on:</span>
+                            <span class="detail-value">{{listingDetails.createdAt | date:'dd-MM-yyyy HH:mm:ss':'':'Asia/Kolkata'}}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Furnished:</span>
+                            <span class="detail-value">{{listingDetails.furnished ? "Yes" : "No"}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</div>

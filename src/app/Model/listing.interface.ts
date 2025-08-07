@@ -1,4 +1,5 @@
 export interface listing {
+_id : string,
  name : string,
 imageUrls : string [],
 address : string,

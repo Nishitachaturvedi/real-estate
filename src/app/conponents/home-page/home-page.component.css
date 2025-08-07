@@ -238,4 +238,18 @@ footer {
     .card-container {
         grid-template-columns: 1fr;
     }
+    
+}
+.search-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.search-wrapper .search-input {
+    flex: 1;
+}
+
+.search-btn {
+    white-space: nowrap;
 }

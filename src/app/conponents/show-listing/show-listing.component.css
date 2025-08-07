@@ -1,0 +1,376 @@
+/* Listing Page Styles */
+
+.listing-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 2rem;
+    background-color: #f9f5ff;
+}
+
+.main-card {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.main-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Top Section Layout */
+.card-top {
+    display: flex;
+    min-height: 500px;
+}
+
+/* Image Gallery Section (70% width) */
+.image-gallery {
+    flex: 0 0 70%;
+    padding: 1.5rem;
+}
+
+.main-image {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative; /* Add this to make it a positioned container */
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.main-image img:hover {
+    transform: scale(1.02);
+}
+
+/* Navigation arrows styling */
+.main-image .pi {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    opacity: 0.8;
+}
+
+.main-image .pi:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Left arrow positioning */
+.main-image .pi-chevron-left {
+    left: 15px;
+}
+
+/* Right arrow positioning */
+.main-image .pi-chevron-right {
+    right: 15px;
+}
+
+/* Optional: Hide arrows by default and show on hover */
+.main-image .pi {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.main-image:hover .pi {
+    opacity: 0.8;
+    visibility: visible;
+}
+
+.main-image .pi:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+}
+.thumbnail-container {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.thumbnail:hover {
+    border-color: #9370DB;
+    transform: scale(1.05);
+}
+
+.thumbnail.active {
+    border-color: #9370DB;
+    box-shadow: 0 0 10px rgba(147, 112, 219, 0.3);
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Property Info Section (30% width) */
+.property-info {
+    flex: 0 0 30%;
+    padding: 2rem;
+    background-color: #fafbff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.listing-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.address {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.location-icon {
+    font-size: 1.1rem;
+    margin-top: 0.1rem;
+}
+
+.property-type {
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.type-label {
+    font-weight: 500;
+    color: #555;
+    margin-right: 0.5rem;
+}
+
+.type-value {
+    color: #9370DB;
+    font-weight: 600;
+}
+
+.price {
+    margin-bottom: 2rem;
+}
+
+.price-amount {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #9370DB;
+}
+
+.price-period {
+    font-size: 1rem;
+    color: #666;
+    margin-left: 0.3rem;
+}
+
+.property-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.feature-icon {
+    font-size: 1.2rem;
+}
+
+.feature-label {
+    font-weight: 500;
+    color: #555;
+    flex-grow: 1;
+}
+
+.feature-value {
+    font-weight: bold;
+    color: #9370DB;
+    font-size: 1.1rem;
+}
+
+/* Bottom Section: Additional Details */
+.card-bottom {
+    padding: 2rem;
+    background-color: white;
+    border-top: 1px solid #f0f0f0;
+}
+
+.additional-details {
+    max-width: 100%;
+}
+
+.detail-section {
+    margin-bottom: 2rem;
+}
+
+.detail-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.detail-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: #FFD700;
+}
+
+.description {
+    line-height: 1.6;
+    color: #555;
+    font-size: 1rem;
+    text-align: justify;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f9f5ff;
+    border-radius: 8px;
+    border-left: 4px solid #9370DB;
+}
+
+.detail-label {
+    font-weight: 500;
+    color: #555;
+}
+
+.detail-value {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .listing-container {
+        padding: 1rem;
+    }
+    
+    .card-top {
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .image-gallery {
+        flex: 1;
+        padding: 1rem;
+    }
+    
+    .main-image {
+        height: 250px;
+    }
+    
+    .thumbnail {
+        width: 60px;
+        height: 45px;
+    }
+    
+    .property-info {
+        flex: 1;
+        padding: 1.5rem;
+    }
+    
+    .listing-name {
+        font-size: 1.5rem;
+    }
+    
+    .price-amount {
+        font-size: 1.5rem;
+    }
+    
+    .property-features {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .feature {
+        flex: 1;
+        min-width: 140px;
+    }
+    
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .thumbnail-container {
+        justify-content: center;
+    }
+    
+    .thumbnail {
+        width: 50px;
+        height: 40px;
+    }
+    
+    .property-features {
+        flex-direction: column;
+    }
+    
+    .feature {
+        min-width: auto;
+    }
+}

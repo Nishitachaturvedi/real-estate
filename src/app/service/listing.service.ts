@@ -38,6 +38,10 @@ return this.http.post <any> ('http://localhost:3000/api/listing/create', body,{ 
 
 
 }
+getListingById( id : any) : Observable <any> {
+
+  return this.http.get <any> (`http://localhost:3000/api/listing/get/${id}`) ; 
+}
 
 
 getUserID () : any{
@@ -52,6 +56,23 @@ let  userRef = JSON.parse(userRef_detail);
 
     }
 
+}
+
+getlistingDetails(searchTerm : any, offer : any, furnished: any, parking : any, type:any) : Observable <any> {
+
+  console.log(type , "HI");
+  let urlSearchTerm = searchTerm? `searchTerm=${searchTerm}`: '';
+
+  let offerUrl = offer ? `&offer=${offer}`:'';
+  let furnishedUrl = furnished ? `&furnished=${furnished}`:'';
+
+  let parkingState = parking ? `&parking=${parking}` : '';
+
+  let typeState = type ? `&type=${type}` : '';
+
+
+
+  return this.http.get <any> (`http://localhost:3000/api/listing/get?${urlSearchTerm}${offerUrl}${furnishedUrl}${parkingState}${typeState}`);
 }
 
    }

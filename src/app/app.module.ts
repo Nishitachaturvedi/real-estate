@@ -13,9 +13,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SigninComponent } from './auth/signin/signin.component';
 import { HomePageComponent } from './conponents/home-page/home-page.component';
 import { MoneyPipePipe } from './pipes/money-pipe.pipe';
+import { DatePipe } from '@angular/common';
 import { CreateListingComponent } from './conponents/create-listing/create-listing.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSnackBarModule} from '@angular/material/snack-bar'; 
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ShowListingComponent } from './conponents/show-listing/show-listing.component';
+import { SearchListingComponent } from './conponents/search-listing/search-listing.component';
+
 
 
 @NgModule({
@@ -25,7 +29,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     SigninComponent,
     HomePageComponent,
     MoneyPipePipe,
-    CreateListingComponent
+    CreateListingComponent,
+    ShowListingComponent,
+    SearchListingComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +42,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(()    => getStorage()),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+     DatePipe
   
   ],
   providers: [],

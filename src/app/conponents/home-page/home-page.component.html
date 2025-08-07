@@ -4,7 +4,10 @@
     <nav class="navbar">
         <div class="logo">NishitaRealEstate</div>
         <div class="search-container">
-            <input type="text" class="search-input" placeholder="Search for homes...">
+            <div class="search-wrapper">
+        <input type="text" class="search-input" placeholder="Search for homes..." [(ngModel)]="searchText" >
+        <button class="btn btn-primary search-btn" (click)="routeToSearchListing()">Search</button>
+    </div>
         </div>
         <ul class="nav-links">
             <li><a href="#mylist">MyList</a></li>
@@ -30,7 +33,7 @@
         <div class="card-container">
             <div class="card" *ngFor="let item of rentListingArray">
                 <div class="card-img" [style.background-image] ="'url(' + item.imageUrls[0] + ')'"></div>
-                <div class="card-content">
+                <div class="card-content" [routerLink]="['/show-listing', item._id]">
                     <div class="card-title">{{item.name}}</div>
                     <div class="card-price">{{item.discountPrice | moneyPipe}}</div>
                     <div class="card-location"><i class="pi pi-map-marker" style="margin-right: 0.1rem ;"></i>{{item.address}}</div>
@@ -55,7 +58,7 @@
         <div class="card-container">
            <div class="card" *ngFor="let item of rentListingArray">
                 <div class="card-img" [style.background-image]="'url(' + item.imageUrls[0] + ')'"></div>
-                <div class="card-content">
+                <div class="card-content" [routerLink]="['/show-listing', item._id]">
                     <div class="card-title">{{item.name}}</div>
                     <div class="card-price">{{item.regularPrice | moneyPipe}}</div>
                     <div class="card-location" ><i class="pi pi-map-marker" style="margin-right: 0.1rem ;"></i>{{item.address}}</div>
