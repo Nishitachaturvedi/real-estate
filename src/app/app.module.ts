@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ShowListingComponent } from './conponents/show-listing/show-listing.component';
 import { SearchListingComponent } from './conponents/search-listing/search-listing.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -36,6 +37,7 @@ import { SearchListingComponent } from './conponents/search-listing/search-listi
   imports: [
     BrowserModule,
     MatSnackBarModule,
+    MatPaginatorModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,

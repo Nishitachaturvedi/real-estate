@@ -16,6 +16,9 @@ export class SearchListingComponent implements OnInit {
   public offerState : boolean = false;
   public parkingState : boolean = false;
   public typeState : string = '';
+  public limit : any = 10;
+public startIndex : any = 0;
+public totalItems : any = 0;
 
   constructor(private activate : ActivatedRoute, private listingService : ListingService) { }
 
@@ -23,12 +26,7 @@ export class SearchListingComponent implements OnInit {
   this.activate.queryParams.subscribe(params =>{
     console.log(params );
     this.value = params['s'];
-    this.listingService.getlistingDetails(this.value,false,false,false,'').subscribe((data) =>{
-     
-     // console.log(data);
-      this.searchArr = data;
-
-    })
+   this.refreshListing();
 
   })
 
@@ -45,6 +43,22 @@ export class SearchListingComponent implements OnInit {
 
 
 //   }
+
+
+refreshListing(){
+
+
+ this.listingService.getlistingDetails(this.limit,this.startIndex,this.value, this.offerState, this.furnishedState,this.parkingState, this.typeState).subscribe((data) =>{
+    this.totalItems = data.totalCount;
+    this.searchArr = data.listings;
+console.log(data);
+
+  })
+
+
+
+
+}
 
   setActiveTabOffer( x : any){
     
@@ -80,19 +94,27 @@ export class SearchListingComponent implements OnInit {
 
     case "6" :
       this.typeState ="lease";
+      break;
 
+    case "all" :
+      this.typeState='';
 
   }
   console.log( this.typeState);
 
-  this.listingService.getlistingDetails(this.value, this.offerState, this.furnishedState,this.parkingState, this.typeState).subscribe((data) => {
-    
-        console.log(data);
-        this.searchArr = data;
-      });
+  this.refreshListing();
 }
 
-  
+ fetchItems(event : any ){
+this.limit = event.pageSize;
+console.log(this.limit);
+console.log(this.totalItems);
+console.log(event.pageIndex);
+this.startIndex = event.pageIndex * event.pageSize;
+console.log("Here we are checking limit and start index", this.limit, this.startIndex);
+ 
+this.refreshListing();
+ } 
 
 
 }
